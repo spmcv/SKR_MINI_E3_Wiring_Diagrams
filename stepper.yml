@@ -1,16 +1,39 @@
 connectors:
   X1:
+    type: JST XH 
+    subtype: female
     pincount: 4
+    pinlabels: [2B, 1B, 1A, 2A]
   X2:
-    pincount: 4
+    type: JST PH
+    subtype: female
+    pincount: 6
+    pinlabels: [2B, NC, 1B, 1A, NC, 2A]
+  S_#8:
+    style: simple
+    autogenerate: true
+    type: "#6 Spade Terminal"
+    subtype: 24-26AWG
+    color: SL # optional color
 
 cables:
   W1:
-    wirecount: 4
+    gauge: 22 AWG
+    show_equiv: true # auto-calculate AWG equivalent
     length: 1
+    wirecount: 4
+    color: GY
+    colors: [BK, RD, WH, GN]
+    shield: SN
+    type: MOTOR
 
 connections:
   -
     - X1: [1-4]
     - W1: [1-4]
-    - X2: [1-4]
+    # non-sequential wiring:
+    - X2: [1,3,4,6]
+  - # connect the shielding to a pin
+    - S_#8
+    - W1: s
+    - S_#8
